@@ -12,5 +12,9 @@ namespace TellRachel.Repositories
         IEnumerable<HerRecord> GetHerRecords(int herNoteId);
 
         HerRecord GetHerRecord(int herNoteId, int herRecordId);
+
+        void CreateNote(HerNote herNote);
+
+        bool Save();
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TellRachel.Entities;
 
@@ -37,6 +35,16 @@ namespace TellRachel.Repositories
         public HerRecord GetHerRecord(int herNoteId, int herRecordId)
         {
             return _context.HerRecords.FirstOrDefault(herRecord => herRecord.HerNoteId == herNoteId && herRecord.Id == herRecordId);
+        }
+
+        public void CreateNote(HerNote herNote)
+        {
+            _context.HerNotes.Add(herNote);
+        }
+
+        public bool Save()
+        {
+            return _context.SaveChanges() >= 0;
         }
     }
 }
