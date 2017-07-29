@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TellRachel.Entities;
 
 namespace TellRachel
 {
@@ -12,6 +14,8 @@ namespace TellRachel
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore().AddJsonFormatters();
+            var connectionString = @"Server=localhost;Database=TellRachel;Trusted_Connection=True;";
+            services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
