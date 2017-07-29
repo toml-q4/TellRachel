@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TellRachel.Models;
 
 namespace TellRachel
@@ -14,12 +11,12 @@ namespace TellRachel
             {
                 var recordList = new List<Record>()
                 {
-                    new SymptomRecord
+                    new RecordSymptom
                     {
                         Id = 1,
                         Description = "Crying. Angry"
                     },
-                    new MedicineRecord
+                    new RecordMedicine
                     {
                         Id = 2,
                         Description
