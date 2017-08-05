@@ -5,17 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TellRachel.Entities
 {
-    public class Note
+    public class Note : IEntityBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        
+        public DateTime? Birthday { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public int? WeightInGrams { get; set; }
 
-        public int WeightInGrams { get; set; }
-
-        public bool IsMale { get; set; }
+        public bool? IsMale { get; set; }
 
         [Required]
         public DateTime TakenDate { get; set; }
