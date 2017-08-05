@@ -29,10 +29,10 @@ namespace TellRachel.Controllers
         }
 
         [HttpGet("{id}", Name = "GetNote")]
-        public IActionResult GetNote(int id, bool includeRecords = false)
+        public IActionResult GetNote(int id, bool withDetails = false)
         {
             Note note;
-            if (includeRecords)
+            if (withDetails)
             {
                 note = _noteRepository.GetSingle(id,
                     n => n.Symptoms,
@@ -43,7 +43,7 @@ namespace TellRachel.Controllers
             if (note == null)
                 return NotFound();
 
-            if (includeRecords)
+            if (withDetails)
             {
                 var noteWithDetailsModel = Mapper.Map<NoteWithDetailsModel>(note);
                 return Ok(noteWithDetailsModel);
