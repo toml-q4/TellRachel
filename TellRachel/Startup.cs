@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TellRachel.Entities;
-using TellRachel.Models;
-using TellRachel.Repositories;
+using TellRachel.Models.Medicine;
+using TellRachel.Models.Note;
+using TellRachel.Models.Symptom;
+using TellRachel.Repositories.Note;
 
 namespace TellRachel
 {
@@ -19,7 +21,7 @@ namespace TellRachel
                 .AddJsonFormatters();
             var connectionString = @"Server=localhost;Database=TellRachel;Trusted_Connection=True;";
             services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString));
-            services.AddScoped<ITellRachelRepository, TellRachelRepository>();
+            services.AddScoped<INoteRepository, NoteRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,10 +40,12 @@ namespace TellRachel
 
             AutoMapper.Mapper.Initialize(configuration =>
             {
-                configuration.CreateMap<HerNote, NoteModel>();
-                configuration.CreateMap<HerNote, NoteWithRecordsModel>();
-                configuration.CreateMap<HerRecord, RecordModel>();
-                configuration.CreateMap<NoteCreationModel, HerNote>();
+                configuration.CreateMap<Note, NoteModel>()
+                    .ForMember(x => x.Birthday, option => option.MapFrom(x => x.Birthday));
+                configuration.CreateMap<Note, NoteWithDetailsModel>();
+                configuration.CreateMap<NoteCreationModel, Note>();
+                configuration.CreateMap<Symptom, SymptomModel>();
+                configuration.CreateMap<Medicine, MedicineModel>();
             });
 
             app.UseMvc();

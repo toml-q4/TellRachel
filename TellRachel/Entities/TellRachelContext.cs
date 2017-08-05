@@ -8,8 +8,10 @@ namespace TellRachel.Entities
         {
             Database.EnsureCreated();
         }
-        public DbSet<HerNote> HerNotes { get; set; }
 
-        public DbSet<HerRecord> HerRecords { get; set; }
+        public DbSet<Note> Notes { get; set; }
+        public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<MedicineDose> MedicineDoses { get; set; }
+        public DbSet<Symptom> Symptoms { get; set; }
     }
 }
