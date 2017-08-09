@@ -2,7 +2,7 @@
 
 namespace TellRachel.Models.Note
 {
-    public class NoteCreationModel
+    public class NoteForCreation
     {
         public DateTime TakenDate { get; set; }
     }

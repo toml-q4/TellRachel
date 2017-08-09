@@ -13,8 +13,10 @@ namespace TellRachel.Entities
         [Required]
         public DateTime TakenDate { get; set; }
 
+        [MaxLength(128)]
         public string Name { get; set; }
 
+        [MaxLength(1024)]
         public string Description { get; set; }
 
         public double TemperatureInCelsius { get; set; }

@@ -54,16 +54,16 @@ namespace TellRachel.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateNote([FromBody] NoteCreationModel noteCreationModel)
+        public IActionResult CreateNote([FromBody] NoteForCreation noteForCreation)
         {
-            if (noteCreationModel == null) return BadRequest("Posted data is invalid");
+            if (noteForCreation == null) return BadRequest("Posted data is invalid");
 
-            if (noteCreationModel.TakenDate == DateTime.MinValue)
+            if (noteForCreation.TakenDate == DateTime.MinValue)
                 ModelState.AddModelError("TakenDate", "Invalid value");
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var note = Mapper.Map<Note>(noteCreationModel);
+            var note = Mapper.Map<Note>(noteForCreation);
             _noteRepository.Add(note);
 
             if (!_noteRepository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");

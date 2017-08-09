@@ -14,6 +14,7 @@ namespace TellRachel.Entities
         public double Amount { get; set; }
 
         [Required]
+        [MaxLength(16)]
         public string Unit { get; set; }
 
         [Required]
