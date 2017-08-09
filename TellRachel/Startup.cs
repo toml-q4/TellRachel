@@ -19,6 +19,9 @@ namespace TellRachel
         {
             services.AddMvcCore()
                 .AddJsonFormatters();
+
+            services.AddCors();
+
             var connectionString = @"Server=localhost;Database=TellRachel;Trusted_Connection=True;";
             services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<INoteRepository, NoteRepository>();
@@ -27,6 +30,9 @@ namespace TellRachel
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // TODO make spa url configurable
+            const string spaUrl = "http://localhost:4200";
+
             loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
@@ -38,10 +44,17 @@ namespace TellRachel
                 app.UseExceptionHandler();
             }
 
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowCredentials();
+                builder.WithOrigins(spaUrl);
+            });
+
             AutoMapper.Mapper.Initialize(configuration =>
             {
-                configuration.CreateMap<Note, NoteModel>()
-                    .ForMember(x => x.Birthday, option => option.MapFrom(x => x.Birthday));
+                configuration.CreateMap<Note, NoteModel>();
                 configuration.CreateMap<Note, NoteWithDetailsModel>();
                 configuration.CreateMap<NoteCreationModel, Note>();
                 configuration.CreateMap<Symptom, SymptomModel>();
