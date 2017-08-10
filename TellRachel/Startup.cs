@@ -73,11 +73,6 @@ namespace TellRachel
                 configuration.CreateMap<Medicine, MedicineModel>();
             });
 
-            /* Executing this code produces an AutoMapperConfigurationException, 
-             * with a descriptive message. AutoMapper checks to make sure that 
-             * every single Destination type member has a corresponding type member on the source type.*/
-            AutoMapper.Mapper.AssertConfigurationIsValid();
-
             app.UseMvc();
         }
     }
