@@ -5,7 +5,7 @@ namespace TellRachel.Models.Medicine
 {
     public class MedicineDoseModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public double Amount { get; set; }
 

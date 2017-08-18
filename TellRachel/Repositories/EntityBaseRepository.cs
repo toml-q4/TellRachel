@@ -38,12 +38,12 @@ namespace TellRachel.Repositories
             return query.AsEnumerable();
         }
 
-        public T GetSingle(int id)
+        public T GetSingle(Guid id)
         {
             return Context.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
-        public T GetSingle(int id, params Expression<Func<T, object>>[] includeProperties)
+        public T GetSingle(Guid id, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = Context.Set<T>();
             foreach (var includeProperty in includeProperties)

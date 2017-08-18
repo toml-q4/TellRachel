@@ -5,7 +5,7 @@ namespace TellRachel.Models.Note
 {
     public class NoteModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public DateTime? Birthday { get; set; }
 

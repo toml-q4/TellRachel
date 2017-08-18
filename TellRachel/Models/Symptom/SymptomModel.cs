@@ -5,7 +5,7 @@ namespace TellRachel.Models.Symptom
 {
     public class SymptomModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public DateTime TakenDate { get; set; }
 

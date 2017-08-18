@@ -8,7 +8,7 @@ namespace TellRachel.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public DateTime TakenDate { get; set; }
@@ -23,7 +23,7 @@ namespace TellRachel.Entities
 
         #region FK - Note
 
-        public int NoteId { get; set; }
+        public Guid NoteId { get; set; }
         [ForeignKey("NoteId")]
         public Note Note { get; set; }
 

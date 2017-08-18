@@ -29,7 +29,7 @@ namespace TellRachel.Controllers
         }
 
         [HttpGet("{id}", Name = "GetNote")]
-        public IActionResult GetNote(int id, bool withDetails = false)
+        public IActionResult GetNote(Guid id, bool withDetails = false)
         {
             Note note;
             if (withDetails)
