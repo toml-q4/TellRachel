@@ -8,7 +8,7 @@ namespace TellRachel.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public double Amount { get; set; }
@@ -23,7 +23,7 @@ namespace TellRachel.Entities
         #region Medicine
 
         [Required]
-        public int MedicineId { get; set; }
+        public Guid MedicineId { get; set; }
 
         [ForeignKey("MedicineId")]
         public Medicine Medicine { get; set; }

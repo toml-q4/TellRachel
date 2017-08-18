@@ -9,7 +9,7 @@ namespace TellRachel.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         
         public DateTime? Birthday { get; set; }
 

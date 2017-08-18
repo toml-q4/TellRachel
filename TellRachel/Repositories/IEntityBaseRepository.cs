@@ -10,8 +10,8 @@ namespace TellRachel.Repositories
         IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
         IEnumerable<T> GetAll();
         int Count();
-        T GetSingle(int id);
-        T GetSingle(int id, params Expression<Func<T, object>>[] includeProperties);
+        T GetSingle(Guid id);
+        T GetSingle(Guid id, params Expression<Func<T, object>>[] includeProperties);
         T GetSingle(Expression<Func<T, bool>> predicate);
         T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);

@@ -1,7 +1,9 @@
-﻿namespace TellRachel.Entities
+﻿using System;
+
+namespace TellRachel.Entities
 {
     public interface IEntityBase
     {
-        int Id { get; set; }
+        Guid Id { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TellRachel.Entities
@@ -7,7 +8,7 @@ namespace TellRachel.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(64)]
@@ -15,7 +16,7 @@ namespace TellRachel.Entities
 
         #region FK - Note
 
-        public int NoteId { get; set; }
+        public Guid NoteId { get; set; }
         [ForeignKey("NoteId")]
         public Note Note { get; set; }
 
