@@ -18,16 +18,6 @@ namespace TellRachel.Controllers
             _noteRepository = noteRepository;
         }
 
-        [HttpGet]
-        public IActionResult GetNotes()
-        {
-            var notes = _noteRepository.GetAll();
-
-            if (notes == null) return NoContent();
-
-            return Ok(Mapper.Map<IEnumerable<NoteModel>>(notes));
-        }
-
         [HttpGet("{id}", Name = "GetNote")]
         public IActionResult GetNote(Guid id, bool withDetails = false)
         {
