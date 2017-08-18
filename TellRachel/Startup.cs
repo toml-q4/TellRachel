@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MySQL.Data.EntityFrameworkCore.Extensions;
 using TellRachel.Entities;
 using TellRachel.Models.Medicine;
 using TellRachel.Models.Note;
@@ -35,7 +35,7 @@ namespace TellRachel
             services.AddCors();
 
             var connectionString = Configuration["connectionStrings:tellRachelDB"];
-            services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<TellRachelContext>(options => options.UseMySQL(connectionString));
             services.AddScoped<INoteRepository, NoteRepository>();
         }
 
