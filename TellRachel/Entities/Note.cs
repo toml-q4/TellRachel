@@ -10,15 +10,12 @@ namespace TellRachel.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        
-        public DateTime? Birthday { get; set; }
 
-        public int? WeightInGrams { get; set; }
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
-        public bool? IsMale { get; set; }
-
-        [Required]
-        public DateTime TakenDate { get; set; }
+        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime CreatedDateUtc { get; set; }
 
         public ICollection<Symptom> Symptoms { get; set; }
 

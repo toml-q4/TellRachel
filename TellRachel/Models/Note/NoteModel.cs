@@ -7,15 +7,7 @@ namespace TellRachel.Models.Note
     {
         public Guid Id { get; set; }
 
-        public DateTime? Birthday { get; set; }
-
-        public int? WeightInGrams { get; set; }
-
-        public bool? IsMale { get; set; }
-
-        public DateTime TakenDate { get; set; }
-
-        public string TakenDateAgo => TakenDate.Humanize();
+        public string Email { get; set; }
     }
 }
 

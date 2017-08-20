@@ -48,9 +48,6 @@ namespace TellRachel.Controllers
         {
             if (noteForCreation == null) return BadRequest("Posted data is invalid");
 
-            if (noteForCreation.TakenDate == DateTime.MinValue)
-                ModelState.AddModelError("TakenDate", "Invalid value");
-
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var note = Mapper.Map<Note>(noteForCreation);

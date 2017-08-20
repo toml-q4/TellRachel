@@ -6,7 +6,7 @@ namespace TellRachel.Entities
     {
         public TellRachelContext(DbContextOptions<TellRachelContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<Note> Notes { get; set; }
