@@ -9,6 +9,7 @@ using TellRachel.Models.Medicine;
 using TellRachel.Models.Note;
 using TellRachel.Models.Symptom;
 using TellRachel.Repositories.Note;
+using TellRachel.Repositories.Symptom;
 
 namespace TellRachel
 {
@@ -37,6 +38,7 @@ namespace TellRachel
             var connectionString = Configuration["connectionStrings:tellRachelDB"];
             services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<INoteRepository, NoteRepository>();
+            services.AddScoped<ISymptomRepository, SymptomRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,8 +70,9 @@ namespace TellRachel
             {
                 configuration.CreateMap<Note, NoteModel>();
                 configuration.CreateMap<Note, NoteWithDetailsModel>();
-                configuration.CreateMap<NoteForCreation, Note>();
+                configuration.CreateMap<NoteCreationModel, Note>();
                 configuration.CreateMap<Symptom, SymptomModel>();
+                configuration.CreateMap<SymptomCreationModel, Symptom>();
                 configuration.CreateMap<Medicine, MedicineModel>();
             });
 

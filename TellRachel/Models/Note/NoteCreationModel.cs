@@ -2,7 +2,7 @@
 
 namespace TellRachel.Models.Note
 {
-    public class NoteForCreation
+    public class NoteCreationModel
     {
         public string Email{ get; set; }
     }

@@ -44,11 +44,9 @@ namespace TellRachel.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateNote([FromBody] NoteForCreation noteForCreation)
+        public IActionResult CreateNote([FromBody] NoteCreationModel noteForCreation)
         {
             if (noteForCreation == null) return BadRequest("Posted data is invalid");
-
-            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var note = Mapper.Map<Note>(noteForCreation);
             _noteRepository.Add(note);
