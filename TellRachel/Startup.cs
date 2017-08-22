@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Humanizer.Configuration;
+using Humanizer.DateTimeHumanizeStrategy;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -75,7 +77,6 @@ namespace TellRachel
                 configuration.CreateMap<SymptomCreationModel, Symptom>();
                 configuration.CreateMap<Medicine, MedicineModel>();
             });
-
             app.UseMvc();
         }
     }

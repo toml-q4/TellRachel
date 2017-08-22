@@ -36,6 +36,19 @@ namespace TellRachel.Controllers
             if (withDetails)
             {
                 var noteWithDetailsModel = Mapper.Map<NoteWithDetailsModel>(note);
+
+                if (note.Symptoms != null)
+                {
+                    foreach(var symptom in note.Symptoms)
+                    {
+                        noteWithDetailsModel.Entries.Add(new NoteEntryModel
+                        {
+                            Name = symptom.Name ?? $"{symptom.TemperatureInCelsius} C - Body Temperature",
+                            TakenDateTime = symptom.TakenDate
+                        });
+                    }
+                }
+                noteWithDetailsModel.Entries.Sort((a, b) => b.TakenDateTime.CompareTo(a.TakenDateTime));
                 return Ok(noteWithDetailsModel);
             }
 

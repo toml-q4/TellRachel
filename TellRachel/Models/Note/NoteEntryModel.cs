@@ -7,6 +7,8 @@ namespace TellRachel.Models.Note
     {
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public DateTime TakenDateTime { get; set; }
 
         public string TakenDateTimeAgo => TakenDateTime.Humanize();

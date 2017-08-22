@@ -6,6 +6,6 @@ namespace TellRachel.Models.Note
 {
     public class NoteWithDetailsModel : NoteModel
     {
-        public ICollection<NoteEntryModel> Entries { get; set; } = new List<NoteEntryModel>();
+        public List<NoteEntryModel> Entries { get; set; } = new List<NoteEntryModel>();
     }
 }
