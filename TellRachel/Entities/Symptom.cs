@@ -19,7 +19,9 @@ namespace TellRachel.Entities
         [MaxLength(1024)]
         public string Description { get; set; }
 
-        public double TemperatureInCelsius { get; set; }
+        public Guid TemperatureId { get; set; }
+        [ForeignKey("TemperatureId")]
+        public Temperature Temperature { get; set; }
 
         #region FK - Note
 
