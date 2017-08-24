@@ -13,5 +13,6 @@ namespace TellRachel.Entities
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<MedicineDose> MedicineDoses { get; set; }
         public DbSet<Symptom> Symptoms { get; set; }
+        public DbSet<Temperature> Temperatures { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace TellRachel.Models.Temperature
 
         public double Value { get; set; }
 
-        public bool IsF { get; set; }
+        public bool IsFahrenheit { get; set; }
     }
 }

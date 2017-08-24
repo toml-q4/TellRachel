@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TellRachel.Entities
 {
@@ -13,8 +10,10 @@ namespace TellRachel.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
+        [Required]
         public double Value { get; set; }
 
-        public bool IsF { get; set; }
+        [Required]
+        public bool IsFahrenheit { get; set; }
     }
 }
