@@ -1,4 +1,5 @@
 ﻿using System;
+using TellRachel.Models.Temperature;
 
 namespace TellRachel.Models.Symptom
 {
@@ -10,8 +11,8 @@ namespace TellRachel.Models.Symptom
 
         public string Description { get; set; }
 
-        public double? TemperatureInCelsius { get; set; }
-
         public Guid NoteId { get; set; }
+
+        public TemperatureCreationModel Temperature { get; set; }
     }
 }
