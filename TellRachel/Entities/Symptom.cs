@@ -28,7 +28,6 @@ namespace TellRachel.Entities
         public Guid NoteId { get; set; }
         [ForeignKey("NoteId")]
         public Note Note { get; set; }
-
         #endregion
     }
 }

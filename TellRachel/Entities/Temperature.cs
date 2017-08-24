@@ -15,5 +15,12 @@ namespace TellRachel.Entities
 
         [Required]
         public bool IsFahrenheit { get; set; }
+
+        #region FK - Note
+        [Required]
+        public Guid NoteId { get; set; }
+        [ForeignKey("NoteId")]
+        public Note Note { get; set; }
+        #endregion
     }
 }
