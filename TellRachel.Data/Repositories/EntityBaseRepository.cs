@@ -105,5 +105,10 @@ namespace TellRachel.Data.Repositories
         {
             return Context.SaveChanges() > 0;
         }
+
+        public bool Exist(Guid id)
+        {
+            return Context.Set<T>().Any(x => x.Id == id);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TellRachel.Models.Temperature
+﻿using System;
+
+namespace TellRachel.Models.Temperature
 {
     public class TemperatureCreationModel
     {
@@ -6,6 +8,6 @@
 
         public bool IsFahrenheit { get; set; }
 
-        public int NoteId { get; set; }
+        public Guid NoteId { get; set; }
     }
 }
