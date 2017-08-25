@@ -21,5 +21,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TellRachel.Data\TellRachel.Data.csproj" />
+    <ProjectReference Include="..\TellRachel.Domain\TellRachel.Domain.csproj" />
+    <ProjectReference Include="..\TellRachel.Shared\TellRachel.Shared.csproj" />
+  </ItemGroup>
 
 </Project>

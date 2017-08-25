@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using TellRachel.Entities;
+using TellRachel.Domain.Entities;
 
-namespace TellRachel.Repositories
+namespace TellRachel.Data.Repositories
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
         where T : class, IEntityBase, new()

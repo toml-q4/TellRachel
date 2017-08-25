@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TellRachel.Entities
+namespace TellRachel.Domain.Entities
 {
     public class MedicineDose : IEntityBase
     {

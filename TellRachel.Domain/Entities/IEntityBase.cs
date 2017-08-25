@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TellRachel.Entities
+namespace TellRachel.Domain.Entities
 {
     public interface IEntityBase
     {

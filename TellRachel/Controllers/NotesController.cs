@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TellRachel.Entities;
+using TellRachel.Domain.Entities;
 using TellRachel.Models.Note;
-using TellRachel.Repositories.Note;
+using TellRachel.Data.Repositories;
 
 namespace TellRachel.Controllers
 {

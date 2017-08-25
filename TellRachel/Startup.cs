@@ -1,17 +1,17 @@
-﻿using Humanizer.Configuration;
-using Humanizer.DateTimeHumanizeStrategy;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TellRachel.Entities;
+using TellRachel.Domain.Entities;
 using TellRachel.Models.Medicine;
 using TellRachel.Models.Note;
 using TellRachel.Models.Symptom;
-using TellRachel.Repositories.Note;
-using TellRachel.Repositories.Symptom;
+using TellRachel.Models.Temperature;
+using TellRachel.Data.Repositories;
+using TellRachel.Data;
+using TellRachel.Shared;
 
 namespace TellRachel
 {
@@ -41,6 +41,9 @@ namespace TellRachel
             services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<ISymptomRepository, SymptomRepository>();
+            services.AddScoped<ITemperatureRepository, TemperatureRepository>();
+
+            services.AddScoped<IUnitConverter, UnitConverter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +79,8 @@ namespace TellRachel
                 configuration.CreateMap<Symptom, SymptomModel>();
                 configuration.CreateMap<SymptomCreationModel, Symptom>();
                 configuration.CreateMap<Medicine, MedicineModel>();
+                configuration.CreateMap<TemperatureCreationModel, Temperature>();
+                configuration.CreateMap<Temperature, TemperatureModel>();
             });
             app.UseMvc();
         }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TellRachel.Models.Note
+﻿namespace TellRachel.Models.Note
 {
     public class NoteCreationModel
     {

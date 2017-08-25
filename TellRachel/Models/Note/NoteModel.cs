@@ -1,5 +1,4 @@
 ﻿using System;
-using Humanizer;
 
 namespace TellRachel.Models.Note
 {

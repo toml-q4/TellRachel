@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using TellRachel.Entities;
+using TellRachel.Domain.Entities;
 
-namespace TellRachel.Repositories
+namespace TellRachel.Data.Repositories
 {
     public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {

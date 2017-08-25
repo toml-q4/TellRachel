@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TellRachel.Domain.Entities;
 
-namespace TellRachel.Entities
+namespace TellRachel.Data
 {
     public class TellRachelContext : DbContext
     {
