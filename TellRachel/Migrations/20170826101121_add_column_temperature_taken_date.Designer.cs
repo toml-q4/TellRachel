@@ -8,9 +8,10 @@ using TellRachel.Data;
 namespace TellRachel.Migrations
 {
     [DbContext(typeof(TellRachelContext))]
-    partial class TellRachelContextModelSnapshot : ModelSnapshot
+    [Migration("20170826101121_add_column_temperature_taken_date")]
+    partial class add_column_temperature_taken_date
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

@@ -1,5 +1,4 @@
 ﻿using System;
-using Humanizer;
 
 namespace TellRachel.Models.Note
 {
@@ -9,8 +8,10 @@ namespace TellRachel.Models.Note
 
         public string Description { get; set; }
 
-        public DateTime TakenDateTime { get; set; }
+        public string RachelSense { get; set; }
 
-        public string TakenDateTimeAgo => TakenDateTime.Humanize();
+        public DateTime TakenDate { get; set; }
+
+        public EntryType EntryType { get; set; }
     }
 }

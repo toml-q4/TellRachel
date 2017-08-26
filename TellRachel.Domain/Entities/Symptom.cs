@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TellRachel.Domain.Entities
 {
-    public class Symptom : IEntityBase
+    public class Symptom : IEntityBase, IUserTimestamp
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

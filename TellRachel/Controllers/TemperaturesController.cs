@@ -40,8 +40,11 @@ namespace TellRachel.Controllers
             if (value == null) return BadRequest("Posted data is invalid");
 
             if (value.NoteId == Guid.Empty)
-                ModelState.AddModelError(nameof(value.NoteId), "Invalid note id");
-            
+                ModelState.AddModelError(nameof(value.NoteId), "Invalid Note Id");
+
+            if (value.TakenDate == DateTime.MinValue)
+                ModelState.AddModelError(nameof(value.TakenDate), "Invalid value");
+
             if (value.IsFahrenheit && (value.Value < HumanLimits.MIN_BODY_TEMPERATURE_FAHRENHEIT || value.Value > HumanLimits.MAX_BODY_TEMPERATURE_FAHRENHEIT))
                 ModelState.AddModelError(nameof(value.Value), "Out of range value for Fahrenheit");
 

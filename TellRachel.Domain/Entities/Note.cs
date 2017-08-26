@@ -19,6 +19,8 @@ namespace TellRachel.Domain.Entities
 
         public ICollection<Symptom> Symptoms { get; set; }
 
+        public ICollection<Temperature> Temperatures{ get; set; }
+
         public ICollection<MedicineDose> MedicineDoses { get; set; }
     }
 }

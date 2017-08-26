@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TellRachel.Domain.Entities
 {
-    public class Temperature : IEntityBase
+    public class Temperature : IEntityBase, IUserTimestamp
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,6 +15,9 @@ namespace TellRachel.Domain.Entities
 
         [Required]
         public bool IsFahrenheit { get; set; }
+
+        [Required]
+        public DateTime TakenDate { get; set; }
 
         #region FK - Note
         [Required]

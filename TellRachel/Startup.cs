@@ -38,7 +38,7 @@ namespace TellRachel
             services.AddCors();
 
             var connectionString = Configuration["connectionStrings:tellRachelDB"];
-            services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<TellRachelContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("TellRachel")));
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<ISymptomRepository, SymptomRepository>();
             services.AddScoped<ITemperatureRepository, TemperatureRepository>();
