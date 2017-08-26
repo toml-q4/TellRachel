@@ -5,7 +5,6 @@ using TellRachel.Shared;
 using System;
 using AutoMapper;
 using TellRachel.Domain.Entities;
-using System.Net;
 
 namespace TellRachel.Controllers
 {
@@ -21,7 +20,7 @@ namespace TellRachel.Controllers
             _noteRepository = noteRepository;
         }
 
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id}", Name = "GetTemperature")]
         public IActionResult Get(Guid id)
         {
             if (id == Guid.Empty)
@@ -57,7 +56,7 @@ namespace TellRachel.Controllers
                 _temperatureRepository.Add(newTemperature);
                 if (!_temperatureRepository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");
                 var createdTemperature = Mapper.Map<TemperatureModel>(newTemperature);
-                return CreatedAtRoute("GetById", new { id = createdTemperature.Id }, createdTemperature);
+                return CreatedAtRoute("GetTemperature", new { id = createdTemperature.Id }, createdTemperature);
             }
             else
             {
