@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TellRachel.Domain.Entities;
 using TellRachel.Models.Note;
 using TellRachel.Data.Repositories;
+using TellRachel.Domain.Enums;
 
 namespace TellRachel.Controllers
 {
@@ -35,13 +37,35 @@ namespace TellRachel.Controllers
 
             if (withDetails)
             {
-                var noteWithDetailsModel = Mapper.Map<NoteWithDetailsModel>(note);                
+                var noteWithDetailsModel = Mapper.Map<NoteWithDetailsModel>(note);
 
                 if (note.Temperatures != null)
                 {
+                    var temperatureList = note.Temperatures
+                                          .OrderByDescending(x => x.TakenDate)
+                                          .ToList();
+
+                    if (temperatureList.Count > 1)
+                    {
+                        var lastTemperature = temperatureList[0];
+                        var secondLastTemperature = temperatureList[1];
+
+                        if (lastTemperature.Value > secondLastTemperature.Value)
+                        {
+                            noteWithDetailsModel.TemperatureIndicator = TemperatureIndicator.Up;
+                        }
+                        else if (lastTemperature.Value < secondLastTemperature.Value)
+                        {
+                            noteWithDetailsModel.TemperatureIndicator = TemperatureIndicator.Down;
+                        }
+                        else
+                        {
+                            noteWithDetailsModel.TemperatureIndicator = TemperatureIndicator.Same;
+                        }
+                    }
                     double previousValue = 0.0;
                     int index = 0;
-                    foreach(var temperature in note.Temperatures)
+                    foreach (var temperature in temperatureList)
                     {
                         string rachelSense = string.Empty;
 
@@ -60,7 +84,8 @@ namespace TellRachel.Controllers
                                 rachelSense = "The body temperature is remaining the same";
                             }
                         }
-                        noteWithDetailsModel.Entries.Add(new NoteEntryModel {
+                        noteWithDetailsModel.Entries.Add(new NoteEntryModel
+                        {
                             Name = $"{temperature.Value:N1}" + (temperature.IsFahrenheit ? "F" : "C"),
                             TakenDate = temperature.TakenDate,
                             EntryType = EntryType.Temperature,
@@ -72,6 +97,9 @@ namespace TellRachel.Controllers
                 }
 
                 noteWithDetailsModel.Entries.Sort((a, b) => b.TakenDate.CompareTo(a.TakenDate));
+
+
+
                 return Ok(noteWithDetailsModel);
             }
 
@@ -90,7 +118,7 @@ namespace TellRachel.Controllers
             if (!_noteRepository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");
 
             var createNoteModel = Mapper.Map<NoteModel>(note);
-            return CreatedAtRoute("GetNote", new {id = createNoteModel.Id}, createNoteModel);
+            return CreatedAtRoute("GetNote", new { id = createNoteModel.Id }, createNoteModel);
         }
     }
 }
