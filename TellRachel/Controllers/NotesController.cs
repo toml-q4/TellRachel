@@ -86,7 +86,7 @@ namespace TellRachel.Controllers
                         }
                         noteWithDetailsModel.Entries.Add(new NoteEntryModel
                         {
-                            Name = $"{temperature.Value:N1}" + (temperature.IsFahrenheit ? "F" : "C"),
+                            Name = $"{temperature.Value:N1}",
                             TakenDate = temperature.TakenDate,
                             EntryType = EntryType.Temperature,
                             RachelSense = rachelSense
