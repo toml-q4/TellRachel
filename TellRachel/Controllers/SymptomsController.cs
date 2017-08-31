@@ -44,24 +44,25 @@ namespace TellRachel.Controllers
                 if (!_repository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");
 
                 var createModel = Mapper.Map<SymptomModel>(entity);
-                return CreatedAtRoute("GetById", new { id = createModel.Id }, createModel);
+                return CreatedAtRoute("GetSymptom", new { id = createModel.Id }, createModel);
             }
             else
             {
                 return NotFound();
             }
         }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpGet("{id}", Name = "GetSymptom")]
+        public IActionResult Get(Guid id)
         {
-        }
+            if (id == Guid.Empty)
+                ModelState.AddModelError(nameof(id), "Invalid symptom id");
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var symptom = _repository.GetSingle(id);
+
+            if (symptom == null) return NotFound();
+            else return Ok(Mapper.Map<SymptomModel>(symptom));
         }
     }
 }

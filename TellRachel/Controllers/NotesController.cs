@@ -39,6 +39,19 @@ namespace TellRachel.Controllers
             {
                 var noteWithDetailsModel = Mapper.Map<NoteWithDetailsModel>(note);
 
+                if (note.Symptoms != null)
+                {
+                    foreach(var symptom in note.Symptoms)
+                    {
+                        noteWithDetailsModel.Entries.Add(new NoteEntryModel
+                        {
+                            Name = symptom.Name,
+                            Description = symptom.Description,
+                            TakenDate = symptom.TakenDate
+                        });
+                    }
+                }
+
                 if (note.Temperatures != null)
                 {
                     var temperatureList = note.Temperatures
