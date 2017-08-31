@@ -14,10 +14,12 @@ namespace TellRachel.Controllers
     public class SymptomsController : ControllerBase
     {
         private ISymptomRepository _repository;
+        private INoteRepository _noteRepository;
 
-        public SymptomsController(ISymptomRepository repository)
+        public SymptomsController(ISymptomRepository repository, INoteRepository noteRepository)
         {
             _repository = repository;
+            _noteRepository = noteRepository;
         }
 
         // POST api/values
@@ -27,20 +29,27 @@ namespace TellRachel.Controllers
             if (value == null) return BadRequest("Posted data is invalid");
 
             if (value.TakenDate == DateTime.MinValue)
-                ModelState.AddModelError("TakenDate", "Invalid value");
+                ModelState.AddModelError(nameof(value.TakenDate), "Invalid value");
 
             if (value.NoteId == Guid.Empty)
-                ModelState.AddModelError("NoteId", "Missing value");
+                ModelState.AddModelError(nameof(value.NoteId), "Invalid value");
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var entity = Mapper.Map<Symptom>(value);
-            _repository.Add(entity);
+            if (_noteRepository.Exist(value.NoteId))
+            {
+                var entity = Mapper.Map<Symptom>(value);
+                _repository.Add(entity);
 
-            if (!_repository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");
+                if (!_repository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");
 
-            var createModel = Mapper.Map<SymptomModel>(entity);
-            return CreatedAtRoute("GetById", new { id = createModel.Id }, createModel);
+                var createModel = Mapper.Map<SymptomModel>(entity);
+                return CreatedAtRoute("GetById", new { id = createModel.Id }, createModel);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // PUT api/values/5

@@ -1,4 +1,5 @@
 ﻿using System;
+using TellRachel.Models.Note;
 
 namespace TellRachel.Models.Temperature
 {
@@ -11,5 +12,22 @@ namespace TellRachel.Models.Temperature
         public bool IsFahrenheit { get; set; }
 
         public DateTime TakenDate { get; set; }
+
+        public NoteEntryModel EntryModel
+        {
+            get
+            {
+                var entry = new NoteEntryModel
+                {
+                    Name = $"{Value:N1}",
+                    TakenDate = TakenDate,
+                    EntryType = EntryType.Temperature
+                };
+                return entry;
+            }
+            private set { }
+
+        }
+
     }
 }
