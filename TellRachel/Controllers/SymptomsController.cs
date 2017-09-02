@@ -10,7 +10,7 @@ using TellRachel.Data.Repositories;
 
 namespace TellRachel.Controllers
 {
-    [Route("api/symptoms")]
+    [Route("api/notes/{noteId}/symptoms")]
     public class SymptomsController : ControllerBase
     {
         private ISymptomRepository _repository;
@@ -24,21 +24,22 @@ namespace TellRachel.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]SymptomCreationModel value)
+        public IActionResult Post(Guid noteId, [FromBody]SymptomCreationModel value)
         {
             if (value == null) return BadRequest("Posted data is invalid");
 
             if (value.TakenDate == DateTime.MinValue)
                 ModelState.AddModelError(nameof(value.TakenDate), "Invalid value");
 
-            if (value.NoteId == Guid.Empty)
-                ModelState.AddModelError(nameof(value.NoteId), "Invalid value");
+            if (noteId == Guid.Empty)
+                ModelState.AddModelError(nameof(noteId), "Invalid value");
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_noteRepository.Exist(value.NoteId))
+            if (_noteRepository.Exist(noteId))
             {
                 var entity = Mapper.Map<Symptom>(value);
+                entity.NoteId = noteId;
                 _repository.Add(entity);
 
                 if (!_repository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");
@@ -63,6 +64,31 @@ namespace TellRachel.Controllers
 
             if (symptom == null) return NotFound();
             else return Ok(Mapper.Map<SymptomModel>(symptom));
+        }
+
+        [HttpDelete("{entryId}")]
+        public IActionResult Delete(Guid noteId, Guid entryId)
+        {
+            if (noteId == Guid.Empty)
+                ModelState.AddModelError(nameof(noteId), "Invalid value");
+
+            if (entryId == Guid.Empty)
+                ModelState.AddModelError(nameof(entryId), "Invalid value");
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (_repository.Exist(noteId, entryId))
+            {
+                _repository.DeleteWhere(x => x.Id == entryId);
+
+                if (!_repository.Save()) return StatusCode(500, "Failed to handle your request. Unknown errors.");
+
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

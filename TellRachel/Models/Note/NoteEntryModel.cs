@@ -4,6 +4,8 @@ namespace TellRachel.Models.Note
 {
     public class NoteEntryModel
     {
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

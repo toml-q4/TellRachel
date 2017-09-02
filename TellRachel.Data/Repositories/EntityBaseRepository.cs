@@ -110,5 +110,9 @@ namespace TellRachel.Data.Repositories
         {
             return Context.Set<T>().Any(x => x.Id == id);
         }
+
+        public bool ExistWhere(Expression<Func<T, bool>> predicate) {
+            return Context.Set<T>().Any(predicate);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using TellRachel.Domain.Entities;
+﻿using System;
+using TellRachel.Domain.Entities;
 
 namespace TellRachel.Data.Repositories
 {
@@ -6,6 +7,11 @@ namespace TellRachel.Data.Repositories
     {
         public TemperatureRepository(TellRachelContext context) : base(context)
         {
+        }
+
+        public bool Exist(Guid noteId, Guid entryId)
+        {
+            return ExistWhere(temperature => temperature.Id == entryId && temperature.NoteId == noteId);
         }
     }
 }

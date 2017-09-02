@@ -9,7 +9,5 @@ namespace TellRachel.Models.Temperature
         public bool IsFahrenheit { get; set; }
 
         public DateTime TakenDate { get; set; }
-
-        public Guid NoteId { get; set; }
     }
 }

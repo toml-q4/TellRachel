@@ -45,9 +45,11 @@ namespace TellRachel.Controllers
                     {
                         noteWithDetailsModel.Entries.Add(new NoteEntryModel
                         {
+                            Id = symptom.Id,
                             Name = symptom.Name,
                             Description = symptom.Description,
-                            TakenDate = symptom.TakenDate
+                            TakenDate = symptom.TakenDate,
+                            EntryType = EntryType.Symptom
                         });
                     }
                 }
@@ -99,6 +101,7 @@ namespace TellRachel.Controllers
                         }
                         noteWithDetailsModel.Entries.Add(new NoteEntryModel
                         {
+                            Id = temperature.Id,
                             Name = $"{temperature.Value:N1}",
                             TakenDate = temperature.TakenDate,
                             EntryType = EntryType.Temperature,
@@ -110,8 +113,6 @@ namespace TellRachel.Controllers
                 }
 
                 noteWithDetailsModel.Entries.Sort((a, b) => b.TakenDate.CompareTo(a.TakenDate));
-
-
 
                 return Ok(noteWithDetailsModel);
             }
