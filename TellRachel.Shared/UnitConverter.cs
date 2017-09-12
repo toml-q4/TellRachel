@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TellRachel.Shared
+﻿namespace TellRachel.Shared
 {
     public class UnitConverter : IUnitConverter
     {

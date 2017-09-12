@@ -11,6 +11,7 @@ namespace TellRachel.Data
         }
 
         public DbSet<Note> Notes { get; set; }
+        public DbSet<CommonMedicine> CommonMedicines { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<MedicineDose> MedicineDoses { get; set; }
         public DbSet<Symptom> Symptoms { get; set; }

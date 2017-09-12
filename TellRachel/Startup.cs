@@ -12,6 +12,7 @@ using TellRachel.Models.Temperature;
 using TellRachel.Data.Repositories;
 using TellRachel.Data;
 using TellRachel.Shared;
+using TellRachel.Models.CommonMedicine;
 
 namespace TellRachel
 {
@@ -42,6 +43,7 @@ namespace TellRachel
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<ISymptomRepository, SymptomRepository>();
             services.AddScoped<ITemperatureRepository, TemperatureRepository>();
+            services.AddScoped<ICommonMedicineRepository, CommonMedicineRepository>();
 
             services.AddScoped<IUnitConverter, UnitConverter>();
         }
@@ -81,6 +83,7 @@ namespace TellRachel
                 configuration.CreateMap<Medicine, MedicineModel>();
                 configuration.CreateMap<TemperatureCreationModel, Temperature>();
                 configuration.CreateMap<Temperature, TemperatureModel>();
+                configuration.CreateMap<CommonMedicine, CommonMedicineModel>();
             });
             app.UseMvc();
         }

@@ -2,14 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using TellRachel.Data;
 
 namespace TellRachel.Migrations
 {
     [DbContext(typeof(TellRachelContext))]
-    partial class TellRachelContextModelSnapshot : ModelSnapshot
+    [Migration("20170902111934_Add_Common_Medicine")]
+    partial class Add_Common_Medicine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

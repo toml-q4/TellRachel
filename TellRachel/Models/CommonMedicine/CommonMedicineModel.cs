@@ -1,25 +1,17 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using TellRachel.Domain.Enums;
 
-namespace TellRachel.Domain.Entities
+namespace TellRachel.Models.CommonMedicine
 {
-    public class Medicine : IEntityBase
+    public class CommonMedicineModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required]
-        [MaxLength(64)]
         public string Name { get; set; }
 
         public string Maker { get; set; }
 
         public string ProductOverview { get; set; }
 
-        [Required]
         public string Dosage { get; set; }
 
         public string Ingredients { get; set; }
